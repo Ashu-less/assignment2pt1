@@ -1,0 +1,16 @@
+{
+  "assignment2/Driver.java": "ef3f943e77f893522a5963a6ea1b6f849ff5bcc6e002e75eb5edcc7b68cc92af",
+  "assignment2/GameConfiguration.java": "563e4a3f8860a7cda81a464a2c0c1dd10810d67640512db35737502fc8f6674d",
+  "assignment2/GuessFeedback.java": "df4edeb3ab123d5f895ef82ce679749fda169a2bf921f3fba04803b1cefbe4b5",
+  "assignment2/GuessRecord.java": "8e9878789485907ea93ccfe386be31ad576322bb1d6915bc489fa09fccf6eae0",
+  "assignment2/GuessRules.java": "16bf045e37da32f79b84eded81b272b77684f65c315f6a6ebafee2b3704e8a2e",
+  "assignment2/GuessingGame.java": "e7778aa2c4887f4ab665a2e8e71d664dadc5e69efb1c1f2397aaf02430676dfd",
+  "assignment2/MasterMindRulesTest.java": "73b459fa3435d321c17dc0b7d0afbb2aa8ec480b42ed27a92e43a8a3a401cdf5",
+  "assignment2/MastermindGame.java": "2284fb64f1f157f768cab44050ba9e38828cbc4170931a553cf9d1e5193337a0",
+  "assignment2/MastermindRules.java": "0047ed6cd6a55950f6933c4106c577aa8b0ee9d4abb99de20841dd199b0aee19",
+  "assignment2/TestHarness.java": "2cada4129e96261840fda9da0a3960d17200c9bd3ee3c3cca0887bbc1a8e370a",
+  "README.md": "4b439611d3bb8b9b27b225d2b49d0e07023a63b7908779ad5de0f2bb8720090f",
+  "Design.pdf": "51fdd9bc46db410964f179abf43b729611062389e4eee5dbbade59bed639d368",
+  "Tests.pdf": "3eef3b6bc72c4625b90fe6776bfae1af45419505b1728eff426f69b95dad35b3",
+  "AI.pdf": "c9839750f3812b6bd84e29acf53d284e0e0d8230ec09d1b68c64c73606b17095"
+}
