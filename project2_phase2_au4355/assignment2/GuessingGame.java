@@ -1,92 +1,95 @@
 package assignment2;
- 
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
- 
+
 public abstract class GuessingGame {
- 
+
     protected final boolean testMode;
     protected final Scanner input;
     protected final Random random;
     private final GuessRules rules;
- 
+
     protected GuessingGame(GuessRules rules, boolean testMode, Scanner input, Random random) {
         this.rules = rules;
         this.testMode = testMode;
         this.input = input;
         this.random = random;
     }
- 
+
     public final void play() {
         printIntroduction();
- 
+
         boolean playAgain = true;
         while (playAgain) {
-            playOneGame();
-            playAgain = askToPlayAgain();
+            playAgain = playOneGame() && askToPlayAgain();
         }
- 
+
         System.out.println("Thanks for playing!");
     }
- 
-    private void playOneGame() {
+
+    private boolean playOneGame() {
         String secret = createSecret();
         List<GuessFeedback> history = new ArrayList<>();
         int guessesUsed = 0;
- 
+
         if (testMode) {
             System.out.println("TEST MODE - secret " + secretNoun() + ": " + secret);
         }
- 
+
         while (guessesUsed < getMaxGuesses()) {
             int guessesLeft = getMaxGuesses() - guessesUsed;
             System.out.print("Enter a guess (" + guessesLeft + " remaining) or HISTORY: ");
- 
+
             if (!input.hasNextLine()) {
                 System.out.println();
-                return;
+                return false;
             }
- 
-            String command = input.nextLine().trim().toUpperCase();
+
+            String command = input.nextLine().trim().toUpperCase(Locale.ROOT);
             if (command.equals("HISTORY")) {
                 printHistory(history);
                 continue;
             }
- 
+
             if (!rules.isValidGuess(command)) {
                 System.out.println(invalidGuessMessage());
                 continue;
             }
- 
+
             GuessFeedback result = rules.evaluateGuess(command, secret);
             history.add(result);
             guessesUsed++;
             System.out.println(result.getFeedbackText());
- 
+
             if (result.isWinningGuess()) {
                 System.out.println("You guessed the secret " + secretNoun() + "!");
-                return;
+                return true;
             }
         }
- 
+
         System.out.println("You are out of guesses. The secret " + secretNoun()
                 + " was " + secret + ".");
+        return true;
     }
- 
+
     private void printHistory(List<GuessFeedback> history) {
         if (history.isEmpty()) {
             System.out.println("No valid guesses have been made yet.");
             return;
         }
- 
+
         System.out.println("Guess history:");
         for (int i = 0; i < history.size(); i++) {
-            System.out.println((i + 1) + ". " + history.get(i));
+            GuessFeedback result = history.get(i);
+            System.out.println((i + 1) + ". " + result.getGuess()
+                    + " -> " + result.getFeedbackText());
         }
     }
- 
+
     private boolean askToPlayAgain() {
         while (true) {
             System.out.print("Play again? (Y/N): ");
@@ -94,7 +97,7 @@ public abstract class GuessingGame {
                 System.out.println();
                 return false;
             }
- 
+
             String answer = input.nextLine().trim();
             if (answer.equalsIgnoreCase("Y") || answer.equalsIgnoreCase("YES")) {
                 return true;
@@ -105,7 +108,7 @@ public abstract class GuessingGame {
             System.out.println("Please enter Y or N.");
         }
     }
- 
+
     protected abstract int getMaxGuesses();
     protected abstract String createSecret();
     protected abstract String secretNoun();
